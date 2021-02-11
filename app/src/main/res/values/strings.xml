@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">My Reminders</string>
+    <string name="action_home">Home</string>
+    <string name="action_add_reminder">Add Reminder</string>
+    <string name="title_activity_create_reminder">Create My Reminder</string>
+</resources>
