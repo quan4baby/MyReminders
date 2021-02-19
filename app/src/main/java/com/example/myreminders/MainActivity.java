@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     CursorAdapter myRemindersCursorAdapter;
 
     // declare a ListView
-    ListView myremindersView;
+    ListView myremindersListView;
 
     /**
      * This method initializes the Action Bar and View of the activity.
@@ -44,14 +45,15 @@ public class MainActivity extends AppCompatActivity {
         dbHandler = new DBHandler(this, null);
 
         // initialize ListView
-        myremindersView = (ListView) findViewById(R.id.myRemindersListView);
+        myremindersListView = (ListView) findViewById(R.id.myRemindersListView);
 
         // initialize myReminders CursorAdapter
-        myRemindersCursorAdapter = new MyReminders(this,
-                dbHandler.getMyReminders(), 0);
+        myRemindersCursorAdapter = new MyReminders(this, dbHandler.getMyReminders(), 0);
 
         // set MyReminders CursorAdapter on the ListView
-        myremindersView.setAdapter(myRemindersCursorAdapter);
+        myremindersListView.setAdapter(myRemindersCursorAdapter);
+
+
 
     }
 

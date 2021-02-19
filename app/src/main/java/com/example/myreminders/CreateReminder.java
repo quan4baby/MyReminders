@@ -8,7 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CreateReminder extends AppCompatActivity {
@@ -33,6 +35,8 @@ public class CreateReminder extends AppCompatActivity {
         // initialize EditTexts
         titleEditText = (EditText) findViewById(R.id.titleEditText);
         reminderEditText = (EditText) findViewById(R.id.reminderEditText);
+        TextView dateTimeDisplay = (TextView) findViewById(R.id.dateTimeDisplay);
+
 
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
@@ -77,6 +81,18 @@ public class CreateReminder extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+        /**
+         * This method gets called when the add FLoating Action Button is clicked.
+         * It starts the CreateList Activity
+         * @param view MainActivity view
+         */
+        public void openCreateList(View view) {
+            // initialize an Intent for the CreateList Activity and start it
+            intent = new Intent(this, CreateReminder.class);
+            startActivity(intent);
+        }
+
 
     /**
      * This method is called when the add button in the Action Bar gets clicked.

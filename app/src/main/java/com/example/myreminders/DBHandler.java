@@ -10,11 +10,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // initialize constants for the DB name and version
     public static final String DATABASE_NAME = "myreminders.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     // initialize constants for the myreminders table
     public static final String TABLE_MY_REMINDERS = "myreminders";
-    public static final String COLUMN_LIST_ID = "id";
+    public static final String COLUMN_LIST_ID = "_id";
     public static final String COLUMN_LIST_TITLE= "title";
     public static final String COLUMN_LIST_TEXT = "text";
 
@@ -39,7 +39,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_MY_REMINDERS + "(" +
                 COLUMN_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_LIST_TITLE + " TEXT, " +
-                COLUMN_LIST_TEXT + "TEXT);";
+                COLUMN_LIST_TEXT + " TEXT);";
 
         // execute the statment
         sqLiteDatabase.execSQL(query);
