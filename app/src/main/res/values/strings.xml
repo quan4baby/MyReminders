@@ -5,4 +5,16 @@
     <string name="title_activity_create_reminder">Create My Reminder</string>
     <string name="title">Title</string>
     <string name="text">Text</string>
+    <string name="view_high_priority">View High Priority</string>
+    <string name="view_medium_priority">View Medium Priority</string>
+    <string name="title_activity_view_high_priority">View High Priority</string>
+    <string name="view_low_priority">View Low Priority</string>
+    <string-array name="priorities">
+        <item></item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+    <string name="title_activity_view_medium_priority">View Medium Priority</string>
+    <string name="title_activity_view_low_priority">View Low Priority</string>
 </resources>

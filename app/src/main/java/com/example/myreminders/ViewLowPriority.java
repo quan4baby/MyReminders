@@ -3,19 +3,20 @@ package com.example.myreminders;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class ViewLowPriority extends AppCompatActivity {
 
     // declare Intent
     Intent intent;
@@ -24,38 +25,34 @@ public class MainActivity extends AppCompatActivity {
     DBHandler dbHandler;
 
     // declare a MyReminders CursorAdapter
-    CursorAdapter myRemindersCursorAdapter;
+    CursorAdapter viewLowPriorityCursorAdapter;
 
     // declare a ListView
-    ListView myremindersListView;
+    ListView viewLowPriorityListView;
 
-    /**
-     * This method initializes the Action Bar and View of the activity.
-     * @param savedInstanceState
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        // initialize the View and Action Bar of the MainActivty
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view_low_priority);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
 
         // initialize ListView
-        myremindersListView = (ListView) findViewById(R.id.myRemindersListView);
+        viewLowPriorityListView = (ListView) findViewById(R.id.viewLowPriorityListView);
 
         // initialize myReminders CursorAdapter
-        myRemindersCursorAdapter = new MyReminders(this, dbHandler.getMyReminders(), 0);
+        viewLowPriorityCursorAdapter = new HighPriority(this, dbHandler.getMyRemindersMediumPriority("Low"), 0);
 
         // set MyReminders CursorAdapter on the ListView
-        myremindersListView.setAdapter(myRemindersCursorAdapter);
+        viewLowPriorityListView.setAdapter(viewLowPriorityCursorAdapter);
 
         // set OnItemClickListener on the ListView
-        myremindersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        viewLowPriorityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              * This method gets called when a item in the listView is clicked.
              * @param adapterView myremindersListView
@@ -67,20 +64,15 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 // initialize Intent for the ViewList Activity
-                intent = new Intent(MainActivity.this, ViewHighPriority.class);
-
-                intent = new Intent(MainActivity.this, ViewMediumPriority.class);
-
-                intent = new Intent(MainActivity.this, ViewLowPriority.class);
+                intent = new Intent(ViewLowPriority.this, ViewLowPriority.class);
 
                 // put the database id in the Intent
                 intent.putExtra("_id", id);
 
-                // start the ViewHighPriority, ViewMediumPriority, ViewLowPriority Activity
+                // start the ViewHighPriority Activity
                 startActivity(intent);
             }
         });
-
     }
 
     /**
@@ -93,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_low_priority, menu);
         return true;
     }
 
@@ -135,15 +127,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-    /**
-     * This method gets called when the add FLoating Action Button is clicked.
-     * It starts the CreateList Activity
-     * @param view MainActivity view
-     */
-    public void openCreateList(View view) {
-        // initialize an Intent for the CreateList Activity and start it
-        intent = new Intent(this, CreateReminder.class);
-        startActivity(intent);
     }
 }

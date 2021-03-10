@@ -19,4 +19,22 @@
         android:orderInCategory="2"
         android:title="@string/action_add_reminder"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_high_priority"
+        android:orderInCategory="3"
+        android:title="@string/view_high_priority"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_medium_priority"
+        android:orderInCategory="4"
+        android:title="@string/view_medium_priority"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_low_priority"
+        android:orderInCategory="5"
+        android:title="@string/view_low_priority"
+        app:showAsAction="never" />
 </menu>

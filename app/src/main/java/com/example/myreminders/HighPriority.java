@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-/**
- * The MyReminders class will map the data selected from the my reminders table,
- * in the Cursor, to the li_my_reminders layout resource.
- */
-public class MyReminders extends CursorAdapter {
+import static com.example.myreminders.R.id.priorityTextView;
+import static com.example.myreminders.R.id.titleTextView;
+
+public class HighPriority extends CursorAdapter {
 
     /**
      * Initialize a MyReminders CursorAdapter.
@@ -23,7 +22,7 @@ public class MyReminders extends CursorAdapter {
      *              don't want any special behavior so we will always
      *              pass 0.
      */
-    public MyReminders(Context context, Cursor c, int flags) {
+    public HighPriority(Context context, Cursor c, int flags) {
         super(context, c, flags);
     }
 
@@ -39,7 +38,7 @@ public class MyReminders extends CursorAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.li_my_reminders, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.li_view_high_priority, parent, false);
     }
 
     /**
@@ -52,12 +51,10 @@ public class MyReminders extends CursorAdapter {
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        ((TextView) view.findViewById(R.id.titleTextView)).
+        ((TextView) view.findViewById(titleTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("title")));
-        ((TextView) view.findViewById(R.id.dateTextView)).
-                setText(cursor.getString(cursor.getColumnIndex("date")));
 
 
     }
-    }
 
+}

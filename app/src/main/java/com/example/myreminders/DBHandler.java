@@ -10,16 +10,22 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // initialize constants for the DB name and version
     public static final String DATABASE_NAME = "myreminders.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 10;
 
     // initialize constants for the myreminders table
     public static final String TABLE_MY_REMINDERS = "myreminders";
     public static final String COLUMN_LIST_ID = "_id";
-    public static final String COLUMN_LIST_TITLE= "title";
+    public static final String COLUMN_LIST_TITLE = "title";
     public static final String COLUMN_LIST_TEXT = "text";
+    public static final String COLUMN_REMINDER_PRIORITY = "priority";
+
+
+
+
 
     /**
      * Creates a version of the My Reminders database.
+     *
      * @param context reference to the activity that initializes a DBHandler
      * @param factory null
      */
@@ -29,6 +35,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * Creates the tables in the database.
+     *
      * @param sqLiteDatabase reference to the My Reminders database
      */
     @Override
@@ -39,7 +46,8 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_MY_REMINDERS + "(" +
                 COLUMN_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_LIST_TITLE + " TEXT, " +
-                COLUMN_LIST_TEXT + " TEXT);";
+                COLUMN_LIST_TEXT + " TEXT, " +
+                COLUMN_REMINDER_PRIORITY + " TEXT);";
 
         // execute the statment
         sqLiteDatabase.execSQL(query);
@@ -47,9 +55,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * Creates a new version of the My Reminders database.
+     *
      * @param sqLiteDatabase reference to My Reminders database
-     * @param oldVersion old version of My Reminders database
-     * @param newVersion new version of My Reminders database
+     * @param oldVersion     old version of My Reminders database
+     * @param newVersion     new version of My Reminders database
      */
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
@@ -68,10 +77,12 @@ public class DBHandler extends SQLiteOpenHelper {
     /**
      * This method gets called when the add button in the Action Bar of the
      * CreateList Activity gets clicked. It inserts a new row into the my reminders table
+     *
      * @param title reminder title
-     * @param text reminder text
+     * @param text  reminder text
+     * @param priority  reminder priority
      */
-    public void addMyReminders(String title, String text) {
+    public void addMyReminders(String title, String text, String priority) {
 
         // get reference to the my reminders database
         SQLiteDatabase db = getWritableDatabase();
@@ -82,6 +93,8 @@ public class DBHandler extends SQLiteOpenHelper {
         // put data into ContentValues object
         values.put(COLUMN_LIST_TITLE, title);
         values.put(COLUMN_LIST_TEXT, text);
+        values.put(COLUMN_REMINDER_PRIORITY, priority);
+
 
         // insert data in ContentValues object into my reminders table
         db.insert(TABLE_MY_REMINDERS, null, values);
@@ -95,6 +108,7 @@ public class DBHandler extends SQLiteOpenHelper {
     /**
      * This method gets called when the MainActivity is created. It will
      * select and return all of the data in the my reminders table
+     *
      * @return Cursor that contains all data in the my reminders table
      */
     public Cursor getMyReminders() {
@@ -108,4 +122,57 @@ public class DBHandler extends SQLiteOpenHelper {
         // execute select statement and return it as a Cursor
         return db.rawQuery(query, null);
     }
+
+    /**
+     * This method gets called when the ViewHighPriority is started.
+     *
+     * @param priority id
+     * @return myreminders priority
+     */
+
+    public Cursor getMyRemindersHighPriority(String priority) {
+        // get reference to the my reminders database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // declare and initialize String that will be returned
+        String name = "";
+
+        // define select statement
+        String query = "SELECT * FROM " + TABLE_MY_REMINDERS +
+                " WHERE " + COLUMN_REMINDER_PRIORITY + " = '" + priority + "'";
+
+        // execute select statement and store it in a Cursor
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getMyRemindersMediumPriority(String priority) {
+        // get reference to the my reminders database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // declare and initialize String that will be returned
+        String name = "";
+
+        // define select statement
+        String query = "SELECT * FROM " + TABLE_MY_REMINDERS +
+                " WHERE " + COLUMN_REMINDER_PRIORITY + " = '" + priority + "'";
+
+        // execute select statement and store it in a Cursor
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getMyRemindersLowPriority(String priority) {
+        // get reference to the my reminders database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // declare and initialize String that will be returned
+        String name = "";
+
+        // define select statement
+        String query = "SELECT * FROM " + TABLE_MY_REMINDERS +
+                " WHERE " + COLUMN_REMINDER_PRIORITY + " = '" + priority + "'";
+
+        // execute select statement and store it in a Cursor
+        return db.rawQuery(query, null);
+    }
+
 }
