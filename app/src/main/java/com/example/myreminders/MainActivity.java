@@ -15,6 +15,10 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     // declare Intent
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
 
@@ -67,11 +73,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 // initialize Intent for the ViewList Activity
-                intent = new Intent(MainActivity.this, ViewHighPriority.class);
+                intent = new Intent(MainActivity.this, CreateReminder.class);
 
-                intent = new Intent(MainActivity.this, ViewMediumPriority.class);
-
-                intent = new Intent(MainActivity.this, ViewLowPriority.class);
 
                 // put the database id in the Intent
                 intent.putExtra("_id", id);

@@ -18,6 +18,14 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.MyReminders.PopupOverlay" />
 
+        <TextView
+            android:id="@+id/remindersTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:text="Reminders"
+            android:textSize="16sp" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

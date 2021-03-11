@@ -18,6 +18,14 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.MyReminders.PopupOverlay" />
 
+        <TextView
+            android:id="@+id/mediumTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:text="Medium"
+            android:textSize="16sp" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_view_medium_priority" />
