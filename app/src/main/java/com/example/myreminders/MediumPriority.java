@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import static com.example.myreminders.R.id.dateTextView;
 import static com.example.myreminders.R.id.titleTextView;
 
 public class MediumPriority extends CursorAdapter {
@@ -52,6 +53,7 @@ public class MediumPriority extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ((TextView) view.findViewById(titleTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("title")));
-
+        ((TextView) view.findViewById(dateTextView)).
+                setText(cursor.getString(cursor.getColumnIndex("date")));
     }
     }

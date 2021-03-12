@@ -11,7 +11,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // initialize constants for the DB name and version
     public static final String DATABASE_NAME = "myreminders.db";
-    public static final int DATABASE_VERSION = 12;
+    public static final int DATABASE_VERSION = 13;
 
     // initialize constants for the myreminders table
     public static final String TABLE_MY_REMINDERS = "myreminders";
