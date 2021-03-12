@@ -54,6 +54,8 @@ public class MyReminders extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ((TextView) view.findViewById(R.id.titleTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("title")));
+        ((TextView) view.findViewById(R.id.dateTextView)).
+                setText(cursor.getString(cursor.getColumnIndex("date")));
 
 
 

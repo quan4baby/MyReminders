@@ -15,8 +15,10 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,9 +51,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
+
+        toolbar.setSubtitle(counter());
 
         // initialize ListView
         myremindersListView = (ListView) findViewById(R.id.myRemindersListView);
@@ -152,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String counter (String title) {
-        int count = dbHandler.getCount(title);
-        return (count == 1 ? count + " Reminder." : count + " Reminders.");
+    public String counter () {
+        int count = dbHandler.getCount();
+        return (count == 1 ? count + " Reminder" : count + " Reminders");
     }
 }

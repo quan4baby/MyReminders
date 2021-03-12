@@ -54,6 +54,7 @@ public class ViewHighPriority extends AppCompatActivity {
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
 
+
         // initialize ListView
         viewHighPriorityListView = (ListView) findViewById(R.id.viewHighPriorityListView);
 
@@ -141,6 +142,7 @@ public class ViewHighPriority extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 
 

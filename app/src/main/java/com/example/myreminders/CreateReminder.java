@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class CreateReminder extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     // declare Intent
@@ -144,6 +147,11 @@ public class CreateReminder extends AppCompatActivity implements AdapterView.OnI
         String title = titleEditText.getText().toString();
         String text = reminderEditText.getText().toString();
 
+
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
+
         // trim Strings and see if they're equal to empty String
         if (title.trim().equals("") || text.trim().equals("") || priority.trim().equals("")){
             // display "Please enter a title and text!" toast
@@ -151,7 +159,8 @@ public class CreateReminder extends AppCompatActivity implements AdapterView.OnI
                     Toast.LENGTH_LONG).show();
         } else {
             // add reminders into database
-            dbHandler.addMyReminders(title, text, priority);
+
+            dbHandler.addMyReminders(title, text, priority, currentDate);
 
             // display "Reminder created!" toast
             Toast.makeText(this,

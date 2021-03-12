@@ -5,12 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
 
 public class DBHandler extends SQLiteOpenHelper {
 
     // initialize constants for the DB name and version
     public static final String DATABASE_NAME = "myreminders.db";
-    public static final int DATABASE_VERSION = 10;
+    public static final int DATABASE_VERSION = 12;
 
     // initialize constants for the myreminders table
     public static final String TABLE_MY_REMINDERS = "myreminders";
@@ -18,6 +19,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_LIST_TITLE = "title";
     public static final String COLUMN_LIST_TEXT = "text";
     public static final String COLUMN_REMINDER_PRIORITY = "priority";
+    public static final String COLUMN_REMINDER_DATE = "date";
 
 
 
@@ -47,7 +49,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 COLUMN_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_LIST_TITLE + " TEXT, " +
                 COLUMN_LIST_TEXT + " TEXT, " +
-                COLUMN_REMINDER_PRIORITY + " TEXT);";
+                COLUMN_REMINDER_PRIORITY + " TEXT, " +
+               COLUMN_REMINDER_DATE + " TEXT);";
 
         // execute the statment
         sqLiteDatabase.execSQL(query);
@@ -77,12 +80,12 @@ public class DBHandler extends SQLiteOpenHelper {
     /**
      * This method gets called when the add button in the Action Bar of the
      * CreateList Activity gets clicked. It inserts a new row into the my reminders table
-     *
-     * @param title reminder title
+     *  @param title reminder title
      * @param text  reminder text
      * @param priority  reminder priority
+     *
      */
-    public void addMyReminders(String title, String text, String priority) {
+    public void addMyReminders(String title, String text, String priority, String date) {
 
         // get reference to the my reminders database
         SQLiteDatabase db = getWritableDatabase();
@@ -94,6 +97,8 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LIST_TITLE, title);
         values.put(COLUMN_LIST_TEXT, text);
         values.put(COLUMN_REMINDER_PRIORITY, priority);
+        values.put(COLUMN_REMINDER_DATE, date);
+
 
 
         // insert data in ContentValues object into my reminders table
@@ -175,14 +180,13 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
-    public int getCount (String title) {
+    public int getCount () {
 
         // get reference to database
         SQLiteDatabase db = getWritableDatabase();
 
         // define select statement
-        String query = " SELECT * FROM " + TABLE_MY_REMINDERS +
-                " WHERE " + COLUMN_LIST_TITLE + " = " + "'" + title + "'";
+        String query = " SELECT * FROM " + TABLE_MY_REMINDERS;
 
         // execute select statment and return count of rows
         return db.rawQuery(query, null).getCount();
