@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     // declare a ListView
     ListView myremindersListView;
 
+    String title;
+
     /**
      * This method initializes the Action Bar and View of the activity.
      * @param savedInstanceState
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 // initialize Intent for the ViewList Activity
-                intent = new Intent(MainActivity.this, CreateReminder.class);
+                intent = new Intent(MainActivity.this, MainActivity.class);
 
 
                 // put the database id in the Intent
@@ -148,5 +150,10 @@ public class MainActivity extends AppCompatActivity {
         // initialize an Intent for the CreateList Activity and start it
         intent = new Intent(this, CreateReminder.class);
         startActivity(intent);
+    }
+
+    public String counter (String title) {
+        int count = dbHandler.getCount(title);
+        return (count == 1 ? count + " Reminder." : count + " Reminders.");
     }
 }

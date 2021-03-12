@@ -175,4 +175,17 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+    public int getCount (String title) {
+
+        // get reference to database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // define select statement
+        String query = " SELECT * FROM " + TABLE_MY_REMINDERS +
+                " WHERE " + COLUMN_LIST_TITLE + " = " + "'" + title + "'";
+
+        // execute select statment and return count of rows
+        return db.rawQuery(query, null).getCount();
+
+    }
 }

@@ -24,7 +24,7 @@ public class ViewLowPriority extends AppCompatActivity {
     // declare a DBHandler
     DBHandler dbHandler;
 
-    // declare a MyReminders CursorAdapter
+    // declare a LowPriority CursorAdapter
     CursorAdapter viewLowPriorityCursorAdapter;
 
     // declare a ListView
@@ -45,17 +45,17 @@ public class ViewLowPriority extends AppCompatActivity {
         // initialize ListView
         viewLowPriorityListView = (ListView) findViewById(R.id.viewLowPriorityListView);
 
-        // initialize myReminders CursorAdapter
-        viewLowPriorityCursorAdapter = new HighPriority(this, dbHandler.getMyRemindersMediumPriority("Low"), 0);
+        // initialize LowPriority CursorAdapter
+        viewLowPriorityCursorAdapter = new LowPriority(this, dbHandler.getMyRemindersMediumPriority("Low"), 0);
 
-        // set MyReminders CursorAdapter on the ListView
+        // set LowPriority CursorAdapter on the ListView
         viewLowPriorityListView.setAdapter(viewLowPriorityCursorAdapter);
 
         // set OnItemClickListener on the ListView
         viewLowPriorityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              * This method gets called when a item in the listView is clicked.
-             * @param adapterView myremindersListView
+             * @param adapterView viewLowPriorityListView
              * @param view MainActivity view
              * @param position position of the clicked item
              * @param id database id of the clicked item
@@ -69,7 +69,7 @@ public class ViewLowPriority extends AppCompatActivity {
                 // put the database id in the Intent
                 intent.putExtra("_id", id);
 
-                // start the ViewHighPriority Activity
+                // start the ViewLowPriority Activity
                 startActivity(intent);
             }
         });
@@ -105,22 +105,22 @@ public class ViewLowPriority extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_create_reminder:
-                // initialize an Intent for the CreateList Activity and start it
+                // initialize an Intent for the CreateReminder Activity and start it
                 intent = new Intent(this, CreateReminder.class);
                 startActivity(intent);
                 return true;
             case R.id.action_high_priority:
-                // initialize an Intent for the CreateList Activity and start it
+                // initialize an Intent for the ViewHighPriority Activity and start it
                 intent = new Intent(this, ViewHighPriority.class);
                 startActivity(intent);
                 return true;
             case R.id.action_medium_priority:
-                // initialize an Intent for the CreateList Activity and start it
+                // initialize an Intent for the ViewMediumPriority Activity and start it
                 intent = new Intent(this, ViewMediumPriority.class);
                 startActivity(intent);
                 return true;
             case R.id.action_low_priority:
-                // initialize an Intent for the CreateList Activity and start it
+                // initialize an Intent for the ViewLowPriority Activity and start it
                 intent = new Intent(this, ViewLowPriority.class);
                 startActivity(intent);
                 return true;

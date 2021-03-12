@@ -154,9 +154,8 @@ public class CreateReminder extends AppCompatActivity implements AdapterView.OnI
             dbHandler.addMyReminders(title, text, priority);
 
             // display "Reminder created!" toast
-            Toast.makeText(this, "" +
-                            "Reminder created!",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this,
+                            "Reminder created!", Toast.LENGTH_LONG).show();
         }
 
     }

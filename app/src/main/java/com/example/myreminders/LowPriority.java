@@ -13,7 +13,7 @@ import static com.example.myreminders.R.id.titleTextView;
 public class LowPriority extends CursorAdapter {
 
     /**
-     * Initialize a MyReminders CursorAdapter.
+     * Initialize a LowPriority CursorAdapter.
      * @param context reference to the MainAcivity that initialzies the MyReminders CursorAdapter
      * @param c reference to the Cursor that contains the data selected
      *          from the my reminders table
@@ -31,7 +31,7 @@ public class LowPriority extends CursorAdapter {
      *      *                MyReminders CursorAdapter
      * @param cursor reference to the Cursor that contains the data selected
      *      *          from the myreminders table
-     * @param parent reference to myremindersListView that will contain the new
+     * @param parent reference to viewLowPriorityListView that will contain the new
      *               View created by this method
      * @return reference to the new View
      */
@@ -44,7 +44,7 @@ public class LowPriority extends CursorAdapter {
      * Bind new View to data in Cursor.
      * @param view reference to new View
      * @param context reference to the Activity that initializes the
-     *                 MyReminders CursorAdapter
+     *                 LowPriority CursorAdapter
      * @param cursor reference to the Cursor that contains the data selected
      *                from the myreminders table
      */
