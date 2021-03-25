@@ -128,6 +128,19 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+    public Cursor getReminder(Integer _id) {
+
+        // get reference to the my reminders database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // define select statement and store it in a String
+        String query = "SELECT * FROM " + TABLE_MY_REMINDERS +
+                " WHERE " + COLUMN_LIST_ID + " = " + _id;
+
+        // execute select statement and return it as a Cursor
+        return db.rawQuery(query, null);
+    }
+
     /**
      * This method gets called when the ViewHighPriority is started.
      *
@@ -190,6 +203,29 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // execute select statment and return count of rows
         return db.rawQuery(query, null).getCount();
+
+    }
+
+    /**
+     * This method gets called when the delete button in the Acdtion Bar of the
+     * View Item actiivty gets clicked. It declares a row in the shoppinglistitem
+     * table
+     * @param _id database id of the shopping list item to be deleted
+     */
+    public void deleteReimnder(Integer _id) {
+
+        // get reference to the shopper database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // define a delete statement and store it in String
+        String query = "DELETE FROM " + TABLE_MY_REMINDERS +
+                " WHERE " + COLUMN_LIST_ID + " = " + _id;
+
+        // execute the delete statement
+        db.execSQL(query);
+
+        // close database reference
+        db.close();
 
     }
 }

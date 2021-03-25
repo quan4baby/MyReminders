@@ -26,6 +26,10 @@
             android:label="@string/title_activity_create_reminder"
             android:theme="@style/Theme.MyReminders.NoActionBar" />
         <activity
+            android:name=".ViewReminder"
+            android:label="@string/title_activity_view_reminder"
+            android:theme="@style/Theme.MyReminders.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyReminders.NoActionBar">

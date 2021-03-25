@@ -18,4 +18,6 @@
     <string name="title_activity_view_medium_priority">View Medium Priority</string>
     <string name="title_activity_view_low_priority">View Low Priority</string>
     <string name="datetextview">dateTextView</string>
+    <string name="delete_reminder">Delete Reminder</string>
+    <string name="title_activity_view_reminder">View Reminder</string>
 </resources>

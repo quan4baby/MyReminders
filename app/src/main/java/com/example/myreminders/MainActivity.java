@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                // initialize Intent for the ViewList Activity
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                // initialize Intent for the ViewReminder Activity
+                intent = new Intent(MainActivity.this, ViewReminder.class);
 
 
                 // put the database id in the Intent
