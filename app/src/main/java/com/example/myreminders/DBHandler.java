@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.TextView;
 
+
+
 public class DBHandler extends SQLiteOpenHelper {
 
     // initialize constants for the DB name and version
@@ -20,10 +22,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_LIST_TEXT = "text";
     public static final String COLUMN_REMINDER_PRIORITY = "priority";
     public static final String COLUMN_REMINDER_DATE = "date";
-
-
-
-
 
     /**
      * Creates a version of the My Reminders database.
@@ -207,7 +205,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * This method gets called when the delete button in the Acdtion Bar of the
+     * This method gets called when the delete button in the Action Bar of the
      * View Item actiivty gets clicked. It declares a row in the shoppinglistitem
      * table
      * @param _id database id of the shopping list item to be deleted
@@ -228,4 +226,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
 
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.myreminders;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import static com.example.myreminders.App.CHANNEL_REMINDER_ID;
 
 public class ViewReminder extends AppCompatActivity {
 
@@ -23,14 +28,15 @@ public class ViewReminder extends AppCompatActivity {
     // declare EditTexts
     EditText titleEditText;
     EditText reminderEditText;
-
-    // declare Spinner
-    Spinner prioritySpinner;
+    EditText priorityEditText;
 
     // declare a Bundle and a long used to get and store the data sent from
     // the MainActivity
     Bundle bundle;
     long id;
+
+    // declare Notification Manager used to show (display) the notification
+    NotificationManagerCompat notificationManagerCompat;
 
 
     // declare Strings to store the shopping list item's name, price, and quantity
@@ -57,12 +63,12 @@ public class ViewReminder extends AppCompatActivity {
         // initialize EditTexts
         titleEditText = (EditText) findViewById(R.id.titleEditText);
         reminderEditText = (EditText) findViewById(R.id.reminderEditText);
-        prioritySpinner = (Spinner) findViewById(R.id.prioritySpinner);
+        priorityEditText = (EditText) findViewById(R.id.priorityEditText);
 
         // disable EditTexts
         titleEditText.setEnabled(false);
         reminderEditText.setEnabled(false);
-        prioritySpinner.setEnabled(false);
+        priorityEditText.setEnabled(false);
 
         // call the DBHandler method getMyReminders
         Cursor cursor = dbHandler.getReminder((int) id);
@@ -78,6 +84,11 @@ public class ViewReminder extends AppCompatActivity {
         // set the title, reminder, values in the EditTexts
         titleEditText.setText(title);
         reminderEditText.setText(reminder);
+        priorityEditText.setText(priority);
+
+        // initialize the Notification Manager
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+
 
     }
 
@@ -133,6 +144,45 @@ public class ViewReminder extends AppCompatActivity {
 
         // display a toast "Item deleted!"
         Toast.makeText(this, "Reminder Deleted!", Toast.LENGTH_LONG).show();
+
+        if((dbHandler.getMyRemindersHighPriority((String) this.priority)).getCount() == 0 && this.priority.equals("High")){
+            // initialize Notification
+            Notification notification = new NotificationCompat.Builder(this,
+                    CHANNEL_REMINDER_ID)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("MyReminders")
+                    .setContentText("High priority reminders deleted!").build();
+
+            // show notification
+            notificationManagerCompat.notify(1, notification);
+
+        }
+
+        if((dbHandler.getMyRemindersMediumPriority((String) this.priority)).getCount() == 0 && this.priority.equals("Medium")){
+            // initialize Notification
+            Notification notification = new NotificationCompat.Builder(this,
+                    CHANNEL_REMINDER_ID)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("MyReminders")
+                    .setContentText("Medium priority reminders deleted!").build();
+
+            // show notification
+            notificationManagerCompat.notify(1, notification);
+
+        }
+
+        if((dbHandler.getMyRemindersLowPriority((String) this.priority)).getCount() == 0 && this.priority.equals("Low")){
+            // initialize Notification
+            Notification notification = new NotificationCompat.Builder(this,
+                    CHANNEL_REMINDER_ID)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("MyReminders")
+                    .setContentText("Low priority reminders deleted!").build();
+
+            // show notification
+            notificationManagerCompat.notify(1, notification);
+
+        }
     }
 }
 

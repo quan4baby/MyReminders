@@ -61,11 +61,12 @@
                 android:layout_height="wrap_content"
                 android:text="Priority" />
 
-            <Spinner
-                android:id="@+id/prioritySpinner"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/priorityEditText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/priorities" />
+                android:ems="10"
+                android:inputType="textPersonName" />
 
         </TableRow>
 
